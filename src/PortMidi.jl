@@ -3,7 +3,8 @@ module PortMidi
 using PortMidi_jll
 export PortMidi_jll
 
-using CEnum
+to_c_type(::Type{<:AbstractString}) = Cstring # or Ptr{Cchar}
+to_c_type(t::Type{<:Union{AbstractArray,Ref}}) = Ptr{eltype(t)}
 
 const PmQueue = Cvoid
 
@@ -21,9 +22,9 @@ end
 
 const PortMidiStream = Cvoid
 
-@cenum PmError::Int32 begin
+@enum PmError::Int32 begin
     pmNoError = 0
-    pmNoData = 0
+    # pmNoData = 0
     pmGotData = 1
     pmHostError = -10000
     pmInvalidDeviceId = -9999
@@ -163,7 +164,7 @@ function Pm_WriteSysEx(stream, when, msg)
     ccall((:Pm_WriteSysEx, libportmidi), PmError, (Ptr{PortMidiStream}, PmTimestamp, Ptr{Cuchar}), stream, when, msg)
 end
 
-@cenum PtError::Int32 begin
+@enum PtError::Int32 begin
     ptNoError = 0
     ptHostError = -10000
     ptAlreadyStarted = -9999
@@ -195,10 +196,6 @@ end
 function Pt_Sleep(duration)
     ccall((:Pt_Sleep, libportmidi), Cvoid, (int32_t,), duration)
 end
-
-const FALSE = 0
-
-const TRUE = 1
 
 const PM_DEFAULT_SYSEX_BUFFER_SIZE = 1024
 
@@ -251,5 +248,20 @@ const PM_FILT_SONG_SELECT = 1 << 0x03
 const PM_FILT_TUNE = 1 << 0x06
 
 const PM_FILT_SYSTEMCOMMON = ((PM_FILT_MTC | PM_FILT_SONG_POSITION) | PM_FILT_SONG_SELECT) | PM_FILT_TUNE
+
+Pm_Message(status, data1, data2) = ((((data2) << 16) & 0xFF0000) | (((data1) << 8) & 0xFF00) | ((status) & 0xFF))
+Pm_MessageStatus(msg) = ((msg) & 0xFF)
+Pm_MessageData1(msg) = (((msg) >> 8) & 0xFF)
+Pm_MessageData2(msg) = (((msg) >> 16) & 0xFF)
+
+export Pm_Message, Pm_MessageStatus, Pm_MessageData1, Pm_MessageData2
+
+# exports
+const PREFIXES = ["Pm"]
+for name in names(@__MODULE__; all=true), prefix in PREFIXES
+    if startswith(string(name), prefix)
+        @eval export $name
+    end
+end
 
 end # module
