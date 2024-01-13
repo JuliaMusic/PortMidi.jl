@@ -1,10 +1,14 @@
 name = "PortMidi"
 uuid = "42b16160-194f-40b3-8419-7a13c10fa643"
 authors = ["SteffenPL <steffen.plunder@web.de> and contributors"]
-version = "1.0.0-DEV"
+version = "0.1.0"
+
+[deps]
+PortMidi_jll = "6b227df9-c220-5195-838c-e1464939a66f"
 
 [compat]
 julia = "1.6"
+PortMidi_jll = "2.0.4"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
