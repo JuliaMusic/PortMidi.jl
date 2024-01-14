@@ -6,7 +6,7 @@
 [![Build Status](https://github.com/SteffenPL/PortMidi.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/SteffenPL/PortMidi.jl/actions/workflows/CI.yml?query=branch%3Amain)
 --->
 
-A Julia wrapper for the [PortMidi](https://github.com/PortMidi/portmidi). 
+A Julia wrapper for the C library [PortMidi](https://github.com/PortMidi/portmidi). 
 See the [C documentation](https://portmidi.github.io/portmidi_docs/) for a list of functions. 
 
 _This wrapper is work in progress. As this is just a hobby for me, I am also happy to hand over the repository in more suitable hands._
