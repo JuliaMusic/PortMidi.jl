@@ -33,7 +33,7 @@ end
 # make a random tune using MusicTheory.jl
 scale = Scale(D[3], major_scale)
 notes = Iterators.take(scale, 14) |> collect
-begin
+@sync begin
     N = 100
     offset = 0.99
     beat = 0.45  # ms
