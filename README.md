@@ -9,7 +9,7 @@
 A Julia wrapper for the C library [PortMidi](https://github.com/PortMidi/portmidi). 
 See the [C documentation](https://portmidi.github.io/portmidi_docs/) for a list of functions. 
 
-_This wrapper is work in progress. As this is just a hobby for me, I am also happy to hand over the repository to more suitable hands._
+_This wrapper is work in progress._
 
 ## Example
 
