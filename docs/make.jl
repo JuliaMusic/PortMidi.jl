@@ -19,6 +19,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="JuliaMusic.github.com/PortMidi.jl",
+    repo="github.com/JuliaMusic/PortMidi.jl",
     devbranch="main",
 )
