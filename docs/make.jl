@@ -8,7 +8,7 @@ makedocs(;
     authors="SteffenPL <steffen.plunder@web.de> and contributors",
     sitename="PortMidi.jl",
     format=Documenter.HTML(;
-        canonical="https://SteffenPL.github.io/PortMidi.jl",
+        canonical="https://JuliaMusic.github.io/PortMidi.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -19,6 +19,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/SteffenPL/PortMidi.jl",
+    repo="JuliaMusic.github.com/PortMidi.jl",
     devbranch="main",
 )
