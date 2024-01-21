@@ -9,6 +9,13 @@ which can also recived and forward MIDI data to the instruments loaded within th
 
 > The following text is a selection of options and clearly subject to personal opinion.  
 
+## Overview
+
+In principle three steps are sufficient:
+- Install standalone virtual instrument.
+- Create MIDI output channel (with `Pm_CreateVirtualOutput` on linux and macOS, with [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html) on Windows).
+- Configure instrument to listen to MIDI and sent note on/off commands to play music.
+
 ## Installation 
 
 The easiest option is to install a _standalone_ virtual instrument such as 
@@ -27,7 +34,7 @@ First, we need to create a new MIDI output channel for sending MIDI messages fro
 
 ### Linux and macOS
 
-One linux and macOS one can use the `Pm_CreateVirtualOutput(name::String, interface::String, deviceinfo::Ptr)` function, see [C docs](https://portmidi.github.io/portmidi_docs/group__grp__device.html#gad72a83e522ff11431c2ab1fc87508e9e) for the explaination. The third input should always be `C_NULL`. The output is either the error message or the new id.
+On linux and macOS one can use the `Pm_CreateVirtualOutput(name::String, interface::String, deviceinfo::Ptr)` function, see [C docs](https://portmidi.github.io/portmidi_docs/group__grp__device.html#gad72a83e522ff11431c2ab1fc87508e9e) for the explaination. The third input should always be `C_NULL`. The output is either the error message or the new id.
 
 > This part of the documentation is untested, please open an issue if the instructions no not work
 
@@ -54,7 +61,7 @@ id = Int(id_or_err)
 
 The `Pm_CreateVirtualOutput` function is not implemented since the interface `MMSystem` does not provide a protable solution for this task. 
 
-#### Creating of a MIDI channel with loopMIDI
+#### Creating a MIDI channel with loopMIDI
 
 We can use the free program [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html) instead. 
 
