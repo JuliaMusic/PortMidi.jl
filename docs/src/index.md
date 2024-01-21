@@ -19,4 +19,4 @@ See the `examples` folder for two small test cases.
 
 ## Playing music
 
-A more detailed tutorial on how to use PortMidi for real time control of virtual instruments, see  [Setup](./setup).
+A more detailed tutorial on how to use PortMidi for real time control of virtual instruments, see  [Setup](./setup.md).
