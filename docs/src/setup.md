@@ -52,14 +52,16 @@ id = Int(id_or_err)
 
 ### Windows
 
-The `Pm_CreateVirtualOutput` function is not implemented since the interface `MMSystem` does not provide a protable solution for this task. We can use the free program [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html) instead. 
+The `Pm_CreateVirtualOutput` function is not implemented since the interface `MMSystem` does not provide a protable solution for this task. 
+
+#### Creating of a MIDI channel with loopMIDI
+
+We can use the free program [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html) instead. 
 
 - Install [loopMIDI](https://www.tobias-erichsen.de/software/loopmidi.html). (Restart might be required.)
 - Create a new MIDI channel called `loopMIDI Port` and click the `+` button.
 
-<!-- ![](loopMIDI_1.png)
-![](loopMIDI_2.png) -->
-
+#### Finding an existing MIDI channel with PortMIDI
 After the MIDI channel is created, we just need to obtain its ID. 
 _Important note: The first call of `Pm_Initialize()` needs to happen after the MIDI channel was created. Alternatively, one needs to call `Pm_Terminate()` first before `Pm_Initialize()` to obtain the correct list of current channels._
 
