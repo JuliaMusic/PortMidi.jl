@@ -69,7 +69,7 @@ We can use the free program [loopMIDI](https://www.tobias-erichsen.de/software/l
 - Create a new MIDI channel called `loopMIDI Port` and click the `+` button.
 
 #### Finding an existing MIDI channel with PortMIDI
-After the MIDI channel is created, we just need to obtain its ID. 
+After the MIDI channel is created, we just need to obtain its ID. Note that the ID index is 0-based.
 _Important note: The first call of `Pm_Initialize()` needs to happen after the MIDI channel was created. Alternatively, one needs to call `Pm_Terminate()` first before `Pm_Initialize()` to obtain the correct list of current channels._
 
 The following code uses the `Pm_GetDeviceInfo` function which returns a C pointer to a `PmDeviceInfo` which has inparticular a `name` and `output` field, which we check to get the right channel.
@@ -79,7 +79,7 @@ using PortMIDI
 
 Pm_Initialize()
 
-id = findfirst(x -> unsafe_string(x.name) == "loopMIDI Port" && x.output > 0, (unsafe_load(Pm_GetDeviceInfo(i)) for i in 0:Pm_CountDevices()-1))
+id = findfirst(x -> unsafe_string(x.name) == "loopMIDI Port" && x.output > 0, (unsafe_load(Pm_GetDeviceInfo(i)) for i in 0:Pm_CountDevices()-1))-1
 
 if isnothing(id)
     error("Could not find MIDI channel 'loopMIDI Port'.")
